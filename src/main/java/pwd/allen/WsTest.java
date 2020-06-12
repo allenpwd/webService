@@ -1,4 +1,4 @@
-package pwd.allen.jws.server;
+package pwd.allen;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -14,6 +14,8 @@ import java.util.Date;
 @WebService()
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface WsTest {
+    public static final String URL = "http://127.0.0.1:8090/service/WsTest";
+
     @WebMethod
     public String sayHello(@WebParam(name = "token", header = true) String token, @WebParam(name = "name") String name);
 

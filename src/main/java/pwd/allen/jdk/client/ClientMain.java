@@ -1,4 +1,7 @@
-package pwd.allen.jws.client;
+package pwd.allen.jdk.client;
+
+import pwd.allen.jdk.client.wsimport.WsTest;
+import pwd.allen.jdk.client.wsimport.WsTestImplService;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;

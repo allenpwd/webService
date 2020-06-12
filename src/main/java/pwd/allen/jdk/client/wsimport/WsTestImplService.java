@@ -1,10 +1,14 @@
 
-package pwd.allen.jws.client;
+package pwd.allen.jdk.client.wsimport;
 
-import javax.xml.namespace.QName;
-import javax.xml.ws.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import javax.xml.namespace.QName;
+import javax.xml.ws.Service;
+import javax.xml.ws.WebEndpoint;
+import javax.xml.ws.WebServiceClient;
+import javax.xml.ws.WebServiceException;
+import javax.xml.ws.WebServiceFeature;
 
 
 /**
@@ -13,14 +17,14 @@ import java.net.URL;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "WsTestImplService", targetNamespace = "http://server.jws.allen.pwd/", wsdlLocation = "http://127.0.0.1:8090/service/WsTest?wsdl")
+@WebServiceClient(name = "WsTestImplService", targetNamespace = "http://allen.pwd/", wsdlLocation = "http://127.0.0.1:8090/service/WsTest?wsdl")
 public class WsTestImplService
     extends Service
 {
 
     private final static URL WSTESTIMPLSERVICE_WSDL_LOCATION;
     private final static WebServiceException WSTESTIMPLSERVICE_EXCEPTION;
-    private final static QName WSTESTIMPLSERVICE_QNAME = new QName("http://server.jws.allen.pwd/", "WsTestImplService");
+    private final static QName WSTESTIMPLSERVICE_QNAME = new QName("http://allen.pwd/", "WsTestImplService");
 
     static {
         URL url = null;
@@ -65,7 +69,7 @@ public class WsTestImplService
      */
     @WebEndpoint(name = "WsTestImplPort")
     public WsTest getWsTestImplPort() {
-        return super.getPort(new QName("http://server.jws.allen.pwd/", "WsTestImplPort"), WsTest.class);
+        return super.getPort(new QName("http://allen.pwd/", "WsTestImplPort"), WsTest.class);
     }
 
     /**
@@ -77,7 +81,7 @@ public class WsTestImplService
      */
     @WebEndpoint(name = "WsTestImplPort")
     public WsTest getWsTestImplPort(WebServiceFeature... features) {
-        return super.getPort(new QName("http://server.jws.allen.pwd/", "WsTestImplPort"), WsTest.class, features);
+        return super.getPort(new QName("http://allen.pwd/", "WsTestImplPort"), WsTest.class, features);
     }
 
     private static URL __getWsdlLocation() {

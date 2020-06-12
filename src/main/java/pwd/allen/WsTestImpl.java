@@ -1,11 +1,11 @@
-package pwd.allen.jws.server;
+package pwd.allen;
 
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebService(endpointInterface = "pwd.allen.jws.server.WsTest")
+@WebService(endpointInterface = "pwd.allen.WsTest")
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class WsTestImpl implements WsTest {
 
