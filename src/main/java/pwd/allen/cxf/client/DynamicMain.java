@@ -4,6 +4,11 @@ import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.dynamic.DynamicClientFactory;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * 使用JaxWsDynamicClientFactory调用
  *
@@ -18,9 +23,16 @@ public class DynamicMain {
     public static void main(String[] args) throws Exception {
         // 按照JAX-WS规范
         DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
-        dynamicClientFactory = DynamicClientFactory.newInstance();
+//        dynamicClientFactory = DynamicClientFactory.newInstance();
         Client client = dynamicClientFactory.createClient("WsTest.xml");
-        Object[] res = client.invoke("sayHello", "test echo", "dynamic");
+        Object[] res = client.invoke("sayHello", "use DynamicClientFactory", "dynamic");
+        System.out.println("Echo response: " + res[0]);
+
+        // 这里主要说一下时间日期的xml传递，方法还略显复杂
+        GregorianCalendar calender = new GregorianCalendar();
+        calender.setTime(new Date(System.currentTimeMillis()));
+        XMLGregorianCalendar xmldate = DatatypeFactory.newInstance().newXMLGregorianCalendar(calender);
+        res = client.invoke("checkTime", xmldate);
         System.out.println("Echo response: " + res[0]);
     }
 }

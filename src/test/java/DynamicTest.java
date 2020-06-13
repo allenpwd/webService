@@ -3,6 +3,8 @@ import org.apache.cxf.endpoint.dynamic.DynamicClientFactory;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 import org.junit.Test;
 
+import java.lang.reflect.Method;
+
 /**
  * @author 门那粒沙
  * @create 2020-06-12 20:08
@@ -22,6 +24,8 @@ public class DynamicTest {
 
         Object[] res = client.invoke("getSupportCity", "广东");
         // res[0]类型是ArrayOfString，是服务端自定义的；这种动态代理的方式没法拿到自定义类型的值
-        System.out.println("Echo response: " + res[0]);
+        System.out.println("class type :" + res[0].getClass());
+        Method getString = res[0].getClass().getDeclaredMethod("getString");
+        System.out.println("结果：" + getString.invoke(res[0]));
     }
 }

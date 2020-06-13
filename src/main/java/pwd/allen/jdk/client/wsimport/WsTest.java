@@ -26,18 +26,6 @@ public interface WsTest {
 
     /**
      * 
-     * @param clientTime
-     * @return
-     *     returns int
-     */
-    @WebMethod(operationName = "CheckTime")
-    @WebResult(name = "valid", partName = "valid")
-    public int checkTime(
-            @WebParam(name = "clientTime", partName = "clientTime")
-                    XMLGregorianCalendar clientTime);
-
-    /**
-     * 
      * @param name
      * @param token
      * @return
@@ -50,5 +38,17 @@ public interface WsTest {
                     String token,
             @WebParam(name = "name", partName = "name")
                     String name);
+
+    /**
+     * 
+     * @param clientTime
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(name = "valid", partName = "valid")
+    public int checkTime(
+            @WebParam(name = "clientTime", partName = "clientTime")
+                    XMLGregorianCalendar clientTime);
 
 }

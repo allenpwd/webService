@@ -1,19 +1,15 @@
-<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://allen.pwd/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="WsTestService" targetNamespace="http://allen.pwd/">
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://allen.pwd/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="MyWsService" targetNamespace="http://allen.pwd/">
   <wsdl:types>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://allen.pwd/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://allen.pwd/">
   <xsd:element name="token" nillable="true" type="xsd:string"/>
 </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="CheckTimeResponse">
-    <wsdl:part name="valid" type="xsd:int">
-    </wsdl:part>
-  </wsdl:message>
   <wsdl:message name="sayHelloResponse">
     <wsdl:part name="return" type="xsd:string">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="CheckTime">
-    <wsdl:part name="clientTime" type="xsd:dateTime">
+  <wsdl:message name="checkTimeResponse">
+    <wsdl:part name="valid" type="xsd:int">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="sayHello">
@@ -22,31 +18,26 @@
     <wsdl:part name="name" type="xsd:string">
     </wsdl:part>
   </wsdl:message>
+  <wsdl:message name="checkTime">
+    <wsdl:part name="clientTime" type="xsd:dateTime">
+    </wsdl:part>
+  </wsdl:message>
   <wsdl:portType name="WsTest">
-    <wsdl:operation name="CheckTime">
-      <wsdl:input message="tns:CheckTime" name="CheckTime">
-    </wsdl:input>
-      <wsdl:output message="tns:CheckTimeResponse" name="CheckTimeResponse">
-    </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="sayHello">
       <wsdl:input message="tns:sayHello" name="sayHello">
     </wsdl:input>
       <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse">
     </wsdl:output>
     </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="WsTestServiceSoapBinding" type="tns:WsTest">
-    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="CheckTime">
-      <soap:operation soapAction="" style="rpc"/>
-      <wsdl:input name="CheckTime">
-        <soap:body namespace="http://allen.pwd/" use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="CheckTimeResponse">
-        <soap:body namespace="http://allen.pwd/" use="literal"/>
-      </wsdl:output>
+    <wsdl:operation name="checkTime">
+      <wsdl:input message="tns:checkTime" name="checkTime">
+    </wsdl:input>
+      <wsdl:output message="tns:checkTimeResponse" name="checkTimeResponse">
+    </wsdl:output>
     </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MyWsServiceSoapBinding" type="tns:WsTest">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="sayHello">
       <soap:operation soapAction="" style="rpc"/>
       <wsdl:input name="sayHello">
@@ -58,9 +49,18 @@
         <soap:body namespace="http://allen.pwd/" use="literal"/>
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="checkTime">
+      <soap:operation soapAction="" style="rpc"/>
+      <wsdl:input name="checkTime">
+        <soap:body namespace="http://allen.pwd/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="checkTimeResponse">
+        <soap:body namespace="http://allen.pwd/" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="WsTestService">
-    <wsdl:port binding="tns:WsTestServiceSoapBinding" name="WsTestPort">
+  <wsdl:service name="MyWsService">
+    <wsdl:port binding="tns:MyWsServiceSoapBinding" name="MyWsPort">
       <soap:address location="http://127.0.0.1:8090/service/WsTest"/>
     </wsdl:port>
   </wsdl:service>

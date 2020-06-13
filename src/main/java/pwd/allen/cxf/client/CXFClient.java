@@ -3,6 +3,8 @@ package pwd.allen.cxf.client;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import pwd.allen.WsTest;
 
+import java.util.Date;
+
 /**
  * 客户端直接调用服务器端提供的服务接口，不需要生成客户端代码，类似RMI的机制。
  * CXF通过运行时代理生成远程服务的代理对象，在客户端完成对webservice的访问。
@@ -20,6 +22,9 @@ public class CXFClient {
 
         WsTest wsTest = jaxWsProxyFactoryBean.create(WsTest.class);
 
-        System.out.println(wsTest.sayHello("token", "cxf"));
+        System.out.println(wsTest.sayHello("use JaxWsProxyFactoryBean", "cxf"));
+
+        System.out.println(wsTest.checkTime(new Date()));
     }
+
 }
