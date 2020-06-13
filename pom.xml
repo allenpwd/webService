@@ -6,34 +6,23 @@
 
     <groupId>pwd.allen</groupId>
     <artifactId>webService</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>spring</module>
+        <module>base</module>
+        <module>springboot</module>
+        <module>common</module>
+    </modules>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <cxf.version>3.1.6</cxf.version>
+        <springboot.version>2.0.3.RELEASE</springboot.version>
+    </properties>
+
     <dependencies>
 
-        <!--CXF-->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
-        <!--没引入这个的话会报错：Cannot find any registered HttpDestinationFactory from the Bus，如果有用其他外部web容器就不需要引入这个-->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http-jetty</artifactId>
-            <version>${cxf.version}</version>
-        </dependency>
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.cxf/cxf-core &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.cxf</groupId>-->
-        <!--            <artifactId>cxf-core</artifactId>-->
-        <!--            <version>${cxf.version}</version>-->
-        <!--        </dependency>-->
-        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.cxf/cxf-rt-transports-http &ndash;&gt;-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.apache.cxf</groupId>-->
-        <!--            <artifactId>cxf-rt-transports-http</artifactId>-->
-        <!--            <version>${cxf.version}</version>-->
-        <!--        </dependency>-->
-
-
+        <!--测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -41,41 +30,6 @@
             <scope>test</scope>
         </dependency>
 
-
     </dependencies>
-
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <cxf.version>3.1.6</cxf.version>
-    </properties>
-
-    <build>
-        <plugins>
-
-            <!--使用cxf框架基于maven的生成客户端代码的插件-->
-            <plugin>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-codegen-plugin</artifactId>
-                <version>${cxf.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources</id>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <wsdlOptions>
-                                <wsdlOption>
-                                    <wsdl>src/main/resources/OrderProcess.wsdl</wsdl>
-                                </wsdlOption>
-                            </wsdlOptions>
-                        </configuration>
-                        <goals>
-                            <goal>wsdl2java</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -9,14 +9,14 @@ import java.lang.reflect.Method;
  * @author 门那粒沙
  * @create 2020-06-12 20:08
  **/
-public class DynamicTest {
+public class PwdTest {
 
     /**
      * 测试使用DynamicClientFactory 调用天气接口
      * @throws Exception
      */
     @Test
-    public void test() throws Exception {
+    public void dynamic() throws Exception {
         // 按照JAX-WS规范
         DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
         dynamicClientFactory = DynamicClientFactory.newInstance();

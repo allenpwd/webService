@@ -31,7 +31,7 @@ public class CXFMain {
 //        jaxWsServerFactoryBean.setEndpointName(new QName("http://allen.pwd/", "MyWsTestService"));
 
         //对外提供的付服务类或者接口
-//        jaxWsServerFactoryBean.setServiceClass(WsTest.class);
+        jaxWsServerFactoryBean.setServiceClass(WsTest.class);
 
         // 指定服务实现bean，必需
         jaxWsServerFactoryBean.setServiceBean(new WsTestImpl());

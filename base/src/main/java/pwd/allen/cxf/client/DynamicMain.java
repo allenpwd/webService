@@ -2,6 +2,8 @@ package pwd.allen.cxf.client;
 
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.dynamic.DynamicClientFactory;
+import org.apache.cxf.interceptor.LoggingInInterceptor;
+import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 
 import javax.xml.datatype.DatatypeFactory;
@@ -25,6 +27,12 @@ public class DynamicMain {
         DynamicClientFactory dynamicClientFactory = JaxWsDynamicClientFactory.newInstance();
 //        dynamicClientFactory = DynamicClientFactory.newInstance();
         Client client = dynamicClientFactory.createClient("WsTest.xml");
+
+        //添加输入拦截器：输入显示日志
+        client.getInInterceptors().add(new LoggingInInterceptor());
+        //添加输出拦截器：输出显示日志
+        client.getOutInterceptors().add(new LoggingOutInterceptor());
+
         Object[] res = client.invoke("sayHello", "use DynamicClientFactory", "dynamic");
         System.out.println("Echo response: " + res[0]);
 
