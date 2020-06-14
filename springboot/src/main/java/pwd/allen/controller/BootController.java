@@ -28,6 +28,6 @@ public class BootController {
 
     @GetMapping("ws/{name}")
     public Object ws(HttpServletRequest request, @PathVariable("name") String name) {
-        return wsTest.sayHello("use cxf in spring", name);
+        return wsTest.sayHello("use cxf in springboot", name);
     }
 }

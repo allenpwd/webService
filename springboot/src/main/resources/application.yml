@@ -1,0 +1,2 @@
+cxf:
+  path: /ws # webservice服务路径，默认/services

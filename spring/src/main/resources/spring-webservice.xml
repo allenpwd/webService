@@ -3,7 +3,13 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jaxws="http://cxf.apache.org/jaxws"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+       http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd"
+>
 
     <!--还需要引入以下3 个关于 CXF 的资源文件，这三个文件在 cxf.jar 中-->
 <!--    <import  resource = "classpath:META-INF/cxf/cxf.xml"  />-->
@@ -19,12 +25,19 @@
             <bean class="pwd.allen.WsTestImpl"/>
         </jaxws:serviceBean>
     </jaxws:server>
-
     <!--
         address：服务端访问地址
         serviceClass：指定接口路径，会根据该类型生成代理对象
     -->
     <jaxws:client id="myTwTest" address="http://localhost:8080/ws/hello" serviceClass="pwd.allen.WsTest">
     </jaxws:client>
+
+
+    <!--基于restful风格的webService，发布服务-->
+    <jaxrs:server address="/userService">
+        <jaxrs:serviceBeans>
+            <bean class="pwd.allen.service.UserServiceImpl"/>
+        </jaxrs:serviceBeans>
+    </jaxrs:server>
 
 </beans>
